@@ -57,7 +57,7 @@ module Enumerable
   def my_map(my_proc = nil)
     new_arr = []
     return self unless my_proc || block_given?
-       for item in self do
+    for item in self do
       if block_given?
         new_arr << yield(item)
       else
