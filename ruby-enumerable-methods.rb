@@ -22,6 +22,33 @@ module Enumerable
     select_arr
   end
 
+  def my_all?
+    passing = false
+    self.my_each do |item| 
+      passing = yield(item)
+      break if not passing
+    end
+    passing
+  end
+
+  def my_any?
+    passing = false
+    self.my_each do |item| 
+      passing = yield(item)
+      break if passing
+    end
+    passing
+  end
+
+  def my_none?
+    passing = false
+    self.my_each do |item| 
+      passing = !yield(item)
+      break if not passing
+    end
+    passing
+  end
+
 end
 
 #my_array = ["firmo", "pinheiro", "holanda"]
@@ -29,5 +56,6 @@ my_array = [3, 5, 1, 10, 7, 12]
 
 #my_array.my_each { |i| puts i}
 #my_array.my_each_with_index { |item, i| puts item + " " + i.to_s}
+#puts my_array.my_select { |num| num.even? }
 
-puts my_array.my_select { |num| num.even? }
+puts my_array.my_none? { |num| num.even? }
