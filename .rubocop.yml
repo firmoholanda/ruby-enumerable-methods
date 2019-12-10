@@ -24,6 +24,8 @@ Style/Documentation:
   Enabled: false
 Style/ClassAndModuleChildren:
   Enabled: false
+Style/CaseEquality:
+  Enabled: false
 
 Layout/AlignHash:
   EnforcedColonStyle: key
@@ -32,6 +34,3 @@ Layout/ExtraSpacing:
 Layout/MultilineMethodCallIndentation:
   Enabled: true
   EnforcedStyle: indented
-
-Style/CaseEquality:
-  Enabled: false
