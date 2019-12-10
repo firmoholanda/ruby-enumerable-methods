@@ -17,7 +17,9 @@ module Enumerable
 
   def my_select
     select_arr = []
-    self.my_each { |item| select_arr << item if yield(item) }
+    for item in self do
+      select_arr << item if yield(item)
+    end
     select_arr
   end
 
