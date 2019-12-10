@@ -10,7 +10,7 @@ module Enumerable
 
   def my_each_with_index
     i = 0
-    for item in self do
+    self.my_each do |item| 
       yield(item, i)
       i += 1
     end
@@ -23,53 +23,67 @@ module Enumerable
   end
 
   def my_all?
-    passing = false
+    pass = false
     self.my_each do |item| 
-      passing = yield(item)
-      break if not passing
+      pass = yield(item)
+      break if not pass
     end
-    passing
+    pass
   end
 
   def my_any?
-    passing = false
+    pass = false
     self.my_each do |item| 
-      passing = yield(item)
-      break if passing
+      pass = yield(item)
+      break if pass
     end
-    passing
+    pass
   end
 
   def my_none?
-    passing = false
+    pass = false
     self.my_each do |item| 
-      passing = !yield(item)
-      break if not passing
+      pass = !yield(item)
+      break if not pass
     end
-    passing
+    pass
   end
 
   def my_count
     self.length
   end
 
-  def my_map(code = nil)
-    arr = []
-    return self unless code or block_given?
-    self.my_each { |item| block_given? ? arr << yield(item) : arr << code.call(item) }
-    arr
+  def my_map(proc = nil, &block)
+    new_arr = []
+    return self unless proc or block_given?
+    self.my_each { |item| block_given? ? new_arr << yield(item) : new_arr << code.call(item) }
+    new_arr
+  end
+
+  def my_inject(num = nil)
+    accumulator = num.nil? ? first : num
+    my_each { |i| accumulator = yield(accumulator, i) }
+		accumulator
   end
 
 end
 
-#my_array = ["firmo", "pinheiro", "holanda"]
+def multiply_els(list)
+  list.my_inject(1) { |product, item| product * item }
+end
+
+test_proc = Proc.new {|i| i + 3}
+
 my_array = [3, 5, 1, 10, 7, 12, 33]
 
 #my_array.my_each { |i| puts i}
-#my_array.my_each_with_index { |item, i| puts item + " " + i.to_s}
+#my_array.my_each_with_index { |item, i| puts item.to_s + " " + i.to_s }
 #puts my_array.my_select { |num| num.even? }
+#puts my_array.my_all? { |num| num.even? }
+#puts my_array.my_any? { |num| num.even? }
 #puts my_array.my_none? { |num| num.even? }
 #puts my_array.count
-
-puts my_array.my_map { |num| num * 3 }
-
+#puts my_array.map { |number| number * 2 } 
+#puts my_array.my_inject {|sum, n| sum + n } 
+#puts multiply_els(my_array)
+#puts (my_array.my_map(&test_proc))
