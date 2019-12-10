@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
-module Enumerable
+# rubocop:disable Style/CaseEquality
 
+module Enumerable
   def my_each
     for item in self do
       yield(item)
@@ -10,7 +11,7 @@ module Enumerable
 
   def my_each_with_index
     i = 0
-    self.my_each do |item| 
+    self.my_each do |item|
       yield(item, i)
       i += 1
     end
@@ -24,7 +25,7 @@ module Enumerable
 
   def my_all?
     pass = false
-    self.my_each do |item| 
+    self.my_each do |item|
       pass = yield(item)
       break if not pass
     end
@@ -33,7 +34,7 @@ module Enumerable
 
   def my_any?
     pass = false
-    self.my_each do |item| 
+    self.my_each do |item|
       pass = yield(item)
       break if pass
     end
@@ -42,7 +43,7 @@ module Enumerable
 
   def my_none?
     pass = false
-    self.my_each do |item| 
+    self.my_each do |item|
       pass = !yield(item)
       break if not pass
     end
@@ -71,3 +72,5 @@ end
 def multiply_els(list)
   list.my_inject(1) { |product, item| product * item }
 end
+
+# rubocop:enable Style/CaseEquality
