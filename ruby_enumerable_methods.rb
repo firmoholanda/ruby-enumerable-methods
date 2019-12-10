@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-# rubocop:disable Style/CaseEquality
 module Enumerable
+# rubocop:disable Style/CaseEquality
   def my_each
     for item in self do
       yield(item)
@@ -66,9 +66,10 @@ module Enumerable
 		accumulator
   end
 
+# rubocop:enable Style/CaseEquality
+
 end
 
 def multiply_els(list)
   list.my_inject(1) { |product, item| product * item }
 end
-# rubocop:enable Style/CaseEquality
