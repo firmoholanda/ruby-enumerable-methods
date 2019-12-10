@@ -59,7 +59,7 @@ module Enumerable
     return self unless my_proc || block_given?
 
     for item in self do
-     return block_given? ? new_arr << yield(item) : new_arr << code.call(item)
+      return block_given? ? new_arr << yield(item) : new_arr << code.call(item)
     end
     new_arr
   end
