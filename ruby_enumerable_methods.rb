@@ -45,13 +45,13 @@ module Enumerable
     pass = false
     for item in self do
       pass = !yield(item)
-      break if not pass
+      break unless pass
     end
     pass
   end
 
   def my_count
-    self.length
+    length
   end
 
   def my_map(proc = nil, &block)
