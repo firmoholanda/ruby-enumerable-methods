@@ -2,30 +2,28 @@
 
 module Enumerable
   def my_each
-    i = 0
-    while i < length
-      yield(self[i])
-      i += 1
+    for item in self do
+      yield(item)
     end
   end
 
   def my_each_with_index
     i = 0
-    0.upto(length - 1) do |item|
-      yield(self[item], i)
+    self.my_each do |item|
+      yield(item, i)
       i += 1
     end
   end
 
   def my_select
     select_arr = []
-    0.upto(length - 1) { |item| select_arr << item if yield(item) }
+    self.my_each { |item| select_arr << item if yield(item) }
     select_arr
   end
 
   def my_all?
     pass = false
-    0.upto(length - 1) do |item|
+    self.my_each do |item|
       pass = yield(item)
       break if not pass
     end
@@ -34,7 +32,7 @@ module Enumerable
 
   def my_any?
     pass = false
-    0.upto(length - 1) do |item|
+    self.my_each do |item|
       pass = yield(item)
       break if pass
     end
@@ -57,7 +55,7 @@ module Enumerable
   def my_map(proc = nil, &block)
     new_arr = []
     return self unless proc or block_given?
-    0.upto(length - 1) { |item| block_given? ? new_arr << yield(item) : new_arr << code.call(item) }
+    self.my_each { |item| block_given? ? new_arr << yield(item) : new_arr << code.call(item) }
     new_arr
   end
 
