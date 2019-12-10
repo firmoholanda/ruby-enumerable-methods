@@ -1,4 +1,4 @@
-require './ruby-enumerable-methods.rb'
+require './ruby_enumerable_methods.rb'
 
 test_proc = Proc.new {|i| i + 3}
 

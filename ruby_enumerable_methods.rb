@@ -1,8 +1,9 @@
 # frozen_string_literal: true
+
 # rubocop:disable Style/CaseEquality
 
 module Enumerable
-  
+
   def my_each
     for item in self do
       yield(item)
