@@ -27,9 +27,7 @@ this project can be found in https://github.com/firmoholanda/ruby-enumerable-met
 
 ### ✨ [code picture]
 
-<a href="https://github.com/firmoholanda/ruby-enumerable-methods/blob/development/img/ruby-enumerable-methods.png" target="_blank">
-    <img alt="page animation" src="https://github.com/firmoholanda/ruby-enumerable-methods/blob/development/img/ruby-enumerable-methods.png"/>
-</a>
+<img alt="page animation" src="https://github.com/firmoholanda/ruby-enumerable-methods/blob/development/img/ruby-enumerable-methods.png"/>
 
 
 
