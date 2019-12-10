@@ -27,8 +27,8 @@ this project can be found in https://github.com/firmoholanda/ruby-enumerable-met
 
 ### ✨ [code picture]
 
-<a href="https://github.com/firmoholanda/ruby-bubble-sort/blob/buble-sort/img/ruby-bubble-sort.png" target="_blank">
-    <img alt="page animation" src="https://github.com/firmoholanda/ruby-bubble-sort/blob/buble-sort/img/ruby-bubble-sort.png"/>
+<a href="https://github.com/firmoholanda/ruby-enumerable-methods/blob/buble-sort/img/ruby-enumerable-methods.png" target="_blank">
+    <img alt="page animation" src="https://github.com/firmoholanda/ruby-enumerable-methods/blob/buble-sort/img/ruby-enumerable-methods.png"/>
 </a>
 
 
