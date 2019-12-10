@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+# rubocop:disable Style/CaseEquality
 
 module Enumerable
   
@@ -71,3 +72,5 @@ end
 def multiply_els(list)
   list.my_inject(1) { |product, item| product * item }
 end
+
+# rubocop:enable Style/CaseEquality
