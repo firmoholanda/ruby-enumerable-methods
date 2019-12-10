@@ -27,7 +27,7 @@ module Enumerable
     pass = false
     for item in self do
       pass = yield(item)
-      break if not pass
+      break unless pass
     end
     pass
   end
