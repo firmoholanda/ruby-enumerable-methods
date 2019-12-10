@@ -2,15 +2,17 @@
 
 module Enumerable
   def my_each
-    for item in self do
-      yield(item)
+    i = 0
+    while i < length
+      yield(self[i])
+      i += 1
     end
   end
 
   def my_each_with_index
     i = 0
-    self.my_each do |item|
-      yield(item, i)
+    0.upto(length-1) do |item|
+      yield(self[item], i)
       i += 1
     end
   end
