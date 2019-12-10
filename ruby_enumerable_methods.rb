@@ -54,10 +54,16 @@ module Enumerable
     length
   end
 
-  def my_map(proc = nil, &block)
+  def my_map(proc = nil)
     new_arr = []
     return self unless proc or block_given?
-    self.my_each { |item| block_given? ? new_arr << yield(item) : new_arr << code.call(item) }
+       for item in self do
+      if block_given?
+        new_arr << yield(item)
+      else
+        new_arr << code.call(item)
+      end
+    end
     new_arr
   end
 
