@@ -9,7 +9,7 @@ module Enumerable
 
   def my_each_with_index
     i = 0
-    self.my_each do |item|
+    for item in self do
       yield(item, i)
       i += 1
     end
@@ -23,7 +23,7 @@ module Enumerable
 
   def my_all?
     pass = false
-    self.my_each do |item|
+    for item in self do
       pass = yield(item)
       break if not pass
     end
@@ -32,7 +32,7 @@ module Enumerable
 
   def my_any?
     pass = false
-    self.my_each do |item|
+    for item in self do
       pass = yield(item)
       break if pass
     end
@@ -41,7 +41,7 @@ module Enumerable
 
   def my_none?
     pass = false
-    self.my_each do |item|
+    for item in self do
       pass = !yield(item)
       break if not pass
     end
