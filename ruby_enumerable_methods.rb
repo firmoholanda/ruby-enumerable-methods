@@ -54,9 +54,9 @@ module Enumerable
     length
   end
 
-  def my_map(proc = nil)
+  def my_map(my_proc = nil)
     new_arr = []
-    return self unless proc or block_given?
+    return self unless my_proc || block_given?
        for item in self do
       if block_given?
         new_arr << yield(item)
