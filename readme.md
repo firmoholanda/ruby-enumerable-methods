@@ -27,17 +27,17 @@ this project can be found in https://github.com/firmoholanda/ruby-enumerable-met
 
 ### ✨ [code picture]
 
-<a href="https://github.com/firmoholanda/ruby-enumerable-methods/blob/buble-sort/img/ruby-enumerable-methods.png" target="_blank">
-    <img alt="page animation" src="https://github.com/firmoholanda/ruby-enumerable-methods/blob/buble-sort/img/ruby-enumerable-methods.png"/>
+<a href="https://github.com/firmoholanda/ruby-enumerable-methods/blob/development/img/ruby-enumerable-methods.png" target="_blank">
+    <img alt="page animation" src="https://github.com/firmoholanda/ruby-enumerable-methods/blob/development/img/ruby-enumerable-methods.png"/>
 </a>
 
 
 
 ## 🤝 contributing
 
-contributions, issues and feature requests are welcome!<br/>Feel free to check [issues page](https://github.com/firmoholanda/newsweek.com-clone/development/issues).
+contributions, issues and feature requests are welcome!<br/>Feel free to check [issues page](https://github.com/firmoholanda/ruby-enumerable-methods/development/issues).
 
-1. fork it (https://github.com/firmoholanda/newsweek.com-clone/development/fork)
+1. fork it (https://github.com/firmoholanda/ruby-enumerable-methods/development/fork)
 2. create your working branch (git checkout -b [choose-a-name])
 3. commit your changes (git commit -am 'what this commit will fix/add/improve')
 4. push to the branch (git push origin [chosen-name])
