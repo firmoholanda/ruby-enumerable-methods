@@ -59,7 +59,7 @@ module Enumerable
     return self unless my_proc || block_given?
 
     for item in self do
-      block_given? ? new_arr << yield(item) : new_arr << code.call(item)
+     return block_given? ? new_arr << yield(item) : new_arr << code.call(item)
     end
     new_arr
   end
@@ -67,9 +67,8 @@ module Enumerable
   def my_inject(num = nil)
     accumulator = num.nil? ? first : num
     my_each { |i| accumulator = yield(accumulator, i) }
-		accumulator
+    accumulator
   end
-
 end
 
 def multiply_els(list)
