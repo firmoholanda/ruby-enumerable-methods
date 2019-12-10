@@ -59,11 +59,7 @@ module Enumerable
     return self unless my_proc || block_given?
 
     for item in self do
-      if block_given?
-        new_arr << yield(item)
-      else
-        new_arr << code.call(item)
-      end
+      block_given? ? new_arr << yield(item) : new_arr << code.call(item)
     end
     new_arr
   end
@@ -78,9 +74,3 @@ end
 def multiply_els(list)
   list.my_inject(1) { |product, item| product * item }
 end
-
-# my_array = [3, 5, 1, 10, 7, 12, 33]
-# test_proc = Proc.new {|i| i + 3}
-
-# puts my_array.map { |number| number * 2 }
-# puts (my_array.my_map(&test_proc))

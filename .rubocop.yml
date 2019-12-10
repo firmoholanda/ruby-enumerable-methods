@@ -29,6 +29,8 @@ Style/CaseEquality:
   Enabled: false
 Style/For:
   Enabled: false
+Style/ConditionalAssignment:
+  Enabled: false
 
 Layout/AlignHash:
   EnforcedColonStyle: key
