@@ -1,21 +1,32 @@
 # frozen_string_literal: true
 
 module Enumerable
+  # my_each --------------------------------------------------------------------------- #
   def my_each
+    return to_enum unless block_given?
+
     for item in self do
       yield(item)
     end
+    self
   end
 
+  # my_each_with_index ---------------------------------------------------------------- #
   def my_each_with_index
+    return to_enum unless block_given?
+
     i = 0
     for item in self do
       yield(item, i)
       i += 1
     end
+    self
   end
 
+  # my_select ------------------------------------------------------------------------- #
   def my_select
+    return to_enum unless block_given?
+
     select_arr = []
     for item in self do
       select_arr << item if yield(item)
@@ -23,54 +34,129 @@ module Enumerable
     select_arr
   end
 
-  def my_all?
-    pass = false
-    for item in self do
-      pass = yield(item)
-      break unless pass
+  # my_all? --------------------------------------------------------------------------- #
+  def my_all?(argument = nil)
+   if argument
+      my_each do |item|
+        return false unless argument === item
+      end
+    elsif block_given?
+      my_each do |item|
+        return false unless yield(item)
+      end
+    else
+      my_each do |item|
+        return false unless item
+      end
     end
-    pass
+    true
   end
 
-  def my_any?
-    pass = false
-    for item in self do
-      pass = yield(item)
-      break if pass
+  #  my_any? -------------------------------------------------------------------------- #
+  def my_any?(argument = nil)
+    if argument
+      my_each do |item|
+        return true if argument === item
+      end
+    elsif block_given?
+      my_each do |item|
+        return true if yield(item)
+      end
+    else
+      my_each do |item|
+        return true if item
+      end
     end
-    pass
+    false
   end
 
-  def my_none?
-    pass = false
-    for item in self do
-      pass = !yield(item)
-      break unless pass
+  # my_none? -------------------------------------------------------------------------- #
+  def my_none?(argument = nil, &block)
+    !my_any?(argument, &block)
+  end
+
+  # my_count -------------------------------------------------------------------------- #
+  def my_count(argument = nil)
+    counter = 0
+    if !argument.nil?
+      my_each do |i|
+        counter += 1 if i == argument
+      end
+    elsif block_given?
+      my_each do |i|
+        counter += 1 if yield(i)
+      end
+    else
+      counter = length
     end
-    pass
+    counter
   end
 
-  def my_count
-    length
-  end
-
-  def my_map(my_proc = nil)
-    new_arr = []
-    return self unless my_proc || block_given?
-
-    for item in self do
-      block_given? ? new_arr << yield(item) : new_arr << code.call(item)
+  # my_map ---------------------------------------------------------------------------- #
+  def my_map(argument = nil)
+    i = 0
+    arr = []
+    while i < size
+      if argument
+        arr << argument.call(self[i])
+      elsif block_given?
+        arr << yield(self[i])
+      else
+        return to_enum
+      end
+      i += 1
     end
-    new_arr
+    arr
   end
 
-  def my_inject(num = nil)
-    accumulator = num.nil? ? first : num
-    my_each { |i| accumulator = yield(accumulator, i) }
-    accumulator
+  # my_inject ------------------------------------------------------------------------- #
+  def my_inject(*init)
+    result = nil
+    if block_given?
+      arr = dup.to_a
+      result = init[0].nil? ? arr[0] : init[0]
+      arr.shift if init[0].nil?
+      arr.my_each do |i|
+        result = yield(result, i)
+      end
+    elsif !block_given?
+      arr = dup.to_a
+      if init[1].nil?
+        sym = init[0]
+        result = arr[0]
+        arr[1..-1].my_each do |i|
+          result = result.send(sym, i)
+        end
+      elsif !init[1].nil?
+        sym = init[1]
+        result = init[0]
+        arr.my_each do |i|
+          result = result.send(sym, i)
+        end
+      end
+    end
+    result
   end
 end
 
 def multiply_els(list)
   list.my_inject(1) { |product, item| product * item }
 end
+
+
+# tests ------------------------------------------------------------------------------- #
+test_proc = Proc.new {|i| i + 3}
+
+my_array = [3, 5, 1, 10, 7, 12, 33]
+
+# my_array.my_each { |i| puts i}
+# my_array.my_each_with_index { |item, i| puts item.to_s + " " + i.to_s }
+# puts my_array.my_select { |num| num.even? }
+# puts my_array.my_all? { |num| num.even? }
+# puts my_array.my_any? { |num| num.even? }
+# puts my_array.my_none? { |num| num.even? }
+# puts my_array.count
+# puts my_array.map { |number| number * 2 } 
+# puts my_array.my_inject {|sum, n| sum + n } 
+# puts multiply_els(my_array)
+# puts (my_array.my_map(&test_proc))
