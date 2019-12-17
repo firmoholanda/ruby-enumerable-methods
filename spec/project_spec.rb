@@ -36,4 +36,19 @@ RSpec.describe Enumerable do
     end
   end
 
+  # my_map
+  describe "#my_map" do
+    it "returns an enumerator if no argument or block is passed" do
+      expect(my_array.my_map).to be_an Enumerator
+    end
+
+    it "returns new array with values generaded from the block" do
+      expect(my_array.my_map { |item| item * 3 }).to eql([9, 15, 3, 30, 21, 36, 99])
+    end
+
+    it "returns new array with values generaded from the proc" do
+      expect(my_array.my_map(proc { |item| item * 33 })).to eql([99, 165, 33, 330, 231, 396, 1089])
+    end
+  end
+
 end
