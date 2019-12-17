@@ -36,4 +36,48 @@ RSpec.describe Enumerable do
     end
   end
 
+  #my_all?
+  describe "#my_all?" do
+    it "returns true if none of the collection members are false or nil and no block is given" do
+      expect(my_array.my_all?).to eql(true)
+    end
+
+    it "returns true if all of the collection members are Numeric" do
+      expect(my_array.my_all?(Numeric)).to eql(true)
+    end
+  end
+
+  #my_any?
+  describe "#my_any?" do
+    it "returns true if at least one of the collection members are not false or nil and no block is given" do
+      expect(my_array.my_any?).to eql(true)
+    end
+
+    it "returns true if at least one of the collection members are Integer" do
+      expect(my_array.my_any?(Integer)).to eql(true)
+    end
+  end
+
+  #my_none?
+  describe "#my_none?" do
+    it "returns true if none of the collection members is true and no block is given" do
+      expect(my_array.my_none?).to eql(false)
+    end
+
+    it "returns true if none of the collection members are minor than 20" do
+      expect(my_array.my_none? { |x| x > 43}).to eql(true)
+    end
+  end
+
+  #my_count
+  describe "#my_count" do
+    it "returns the number of items in enum through enumeration if no block is given" do
+      expect(my_array.my_count).to eql(7)
+    end
+
+    it "It counts the number of elements yielding a true value" do
+      expect(my_array.my_count { |x| x == 43}).to eql(0)
+    end
+  end
+
 end
