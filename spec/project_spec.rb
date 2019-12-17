@@ -58,7 +58,7 @@ RSpec.describe Enumerable do
     end
   end
 
-  #my_none?
+  #my_none? --------------------------------------------------------------------------- #
   describe "#my_none?" do
     it "returns true if none of the collection members is true and no block is given" do
       expect(my_array.my_none?).to eql(false)
@@ -69,7 +69,7 @@ RSpec.describe Enumerable do
     end
   end
 
-  #my_count
+  #my_count --------------------------------------------------------------------------- #
   describe "#my_count" do
     it "returns the number of items in enum through enumeration if no block is given" do
       expect(my_array.my_count).to eql(7)
@@ -117,4 +117,5 @@ RSpec.describe Enumerable do
       end
     end
   end
+
 end
